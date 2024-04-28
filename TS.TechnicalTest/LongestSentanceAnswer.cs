@@ -13,7 +13,7 @@ public class LongestSentanceAnswer
         foreach (string sentence in sentences)
         {
             //get words from a sentence 
-            var sentenceWords = sentence.Split(' ','!','?');
+            var sentenceWords = sentence.Split(new char[] { ' ','?','!'}, StringSplitOptions.RemoveEmptyEntries);
             //check if the sentence number of words is grether than longestSentenceWords
             if (longestSentenceWords == null || sentenceWords.Length > longestSentenceWords.Length)
             {
@@ -23,5 +23,6 @@ public class LongestSentanceAnswer
 
         return longestSentenceWords.Length;
     }
+
 
 }
