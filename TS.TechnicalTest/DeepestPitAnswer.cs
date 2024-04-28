@@ -4,16 +4,25 @@ public class DeepestPitAnswer
 {
     public static int Solution(int[] points)
     {
+        //check for invalid inpu
+
+        if (points.Length < 3)
+        {
+            return -1;
+        }
+
         int deepestPitDepth = -1;
         int currentIndex = 0;
 
         while (currentIndex < points.Length - 2)
-        { 
+        {
+
+
             //find potential pit start(decreasing sequence)
             int potentialPitStartValue = points[currentIndex];
             int potentialPitEndIndex = currentIndex + 1;
 
-            while (currentIndex < points.Length - 1 && points[potentialPitEndIndex] < points[potentialPitEndIndex - 1])
+            while (potentialPitEndIndex < points.Length - 1 && points[potentialPitEndIndex] < points[potentialPitEndIndex - 1])
             {
                 potentialPitEndIndex++;
             }
@@ -30,7 +39,7 @@ public class DeepestPitAnswer
 
             //find potential pit end 
             int potentialPitRightEdgeindex = potentialPitEndIndex;
-            while (potentialPitRightEdgeindex < points.Length && points[potentialPitRightEdgeindex] > points[potentialPitRightEdgeindex])
+            while (potentialPitRightEdgeindex < points.Length && points[potentialPitRightEdgeindex] > points[potentialPitRightEdgeindex -1])
             {
                 potentialPitRightEdgeindex++;
             }
@@ -42,7 +51,7 @@ public class DeepestPitAnswer
                 continue;
             }
 
-            //fin the right edge
+            //find the right edge
             int potentialPitEndValue = points[potentialPitRightEdgeindex - 1];
 
             //calculate depth 
